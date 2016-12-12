@@ -1,11 +1,7 @@
-import 'React' from 'react';
-import 'ReactDOM' from 'react-dom';
-
-
-export default function(inComponent,inProps,inAttrs){
-  const props = inProps || {};
-  const div = document.createElement('div');
-  const body = document.body;
+module.exports = function(inComponent,inProps,inAttrs){
+  var props = inProps || {};
+  var div = document.createElement('div');
+  var body = document.body;
 
   for (var attr in inAttrs) {
     if (inAttrs.hasOwnProperty(attr)) {
@@ -20,10 +16,10 @@ export default function(inComponent,inProps,inAttrs){
     , div);
 
   return {
-    component,
-    destroy() {
+    component:component,
+    destroy:function(){
       ReactDOM.unmountComponentAtNode(div);
       body.removeChild(div);
     }
   };
-}
+};

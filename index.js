@@ -1,3 +1,6 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+
 module.exports = function(inComponent,inProps,inAttrs){
   var props = inProps || {};
   var div = document.createElement('div');

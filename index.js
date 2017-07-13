@@ -14,7 +14,7 @@ module.exports = function(inComponent,inProps,inAttrs){
 
   body.appendChild(div);
 
-  const component = ReactDOM.render(
+  var component = ReactDOM.render(
     React.createElement(inComponent,inProps)
     , div);
 

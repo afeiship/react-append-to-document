@@ -22,7 +22,9 @@ module.exports = function(inComponent,inProps,inAttrs){
     component:component,
     destroy:function(){
       ReactDOM.unmountComponentAtNode(div);
-      body.removeChild(div);
+      try{
+        body.removeChild(div);
+      }catch(_){}
     }
   };
 };

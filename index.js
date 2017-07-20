@@ -24,7 +24,9 @@ module.exports = function(inComponent,inProps,inAttrs){
       try{
         ReactDOM.unmountComponentAtNode(div);
         body.removeChild(div);
-      }catch(_){}
+      }catch(_){
+        console.warn(_);
+      }
     }
   };
 };

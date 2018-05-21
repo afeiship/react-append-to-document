@@ -4,7 +4,7 @@ var createElement = function (inAttrs, inName) {
   var element = document.createElement(inName || 'div');
   for (var attr in inAttrs) {
     if (inAttrs.hasOwnProperty(attr)) {
-      element[attr] = inTarget[attr];
+      element[attr] = inAttrs[attr];
     }
   }
   return element;

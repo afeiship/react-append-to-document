@@ -1,29 +1,32 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-module.exports = function(inComponent,inProps,inAttrs){
+module.exports = function(inComponent,inProps,inTarget){
   var props = inProps || {};
-  var div = document.createElement('div');
+  var isElement = inTarget.nodeType == 1;
   var body = document.body;
+  var element = isElement ? inTarget : document.createElement('div');
 
-  for (var attr in inAttrs) {
-    if (inAttrs.hasOwnProperty(attr)) {
-      div[attr]=inAttrs[attr];
+  if(!isElement){
+    for (var attr in inTarget) {
+      if (inTarget.hasOwnProperty(attr)) {
+        element[attr]=inTarget[attr];
+      }
     }
   }
 
-  body.appendChild(div);
+  body.appendChild(element);
 
   var component = ReactDOM.render(
     React.createElement(inComponent,inProps)
-    , div);
+    , element);
 
   return {
     component:component,
     destroy:function(){
       try{
-        ReactDOM.unmountComponentAtNode(div);
-        body.removeChild(div);
+        ReactDOM.unmountComponentAtNode(element);
+        body.removeChild(element);
       }catch(_){
         console.warn(_);
       }

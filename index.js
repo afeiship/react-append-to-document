@@ -22,8 +22,9 @@ module.exports = function(inComponent,inProps,inTarget){
     , element);
 
   return {
-    component:component,
-    destroy:function(){
+    element: element,
+    component: component,
+    destroy: function(){
       try{
         ReactDOM.unmountComponentAtNode(element);
         body.removeChild(element);

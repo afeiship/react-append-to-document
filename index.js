@@ -10,29 +10,31 @@ var createElement = function (inAttrs, inName) {
   return element;
 };
 
-module.exports = function (inComponent, inProps, inTarget) {
-  var props = inProps || {};
-  var isElement = inTarget.nodeType == 1;
-  var body = document.body;
-  var element = isElement ? inTarget : createElement(inTarget);
+module.exports = {
+  create: createElement,
+  append: function(inComponent, inProps, inTarget) {
+    var props = inProps || {};
+    var isElement = inTarget.nodeType == 1;
+    var body = document.body;
+    var element = isElement ? inTarget : createElement(inTarget);
 
-  body.appendChild(element);
+    body.appendChild(element);
 
-  var component = ReactDOM.render(
-    React.createElement(inComponent, inProps)
-    , element);
+    var component = ReactDOM.render(
+      React.createElement(inComponent, inProps)
+      , element);
 
-  return {
-    element: element,
-    component: component,
-    createElement: createElement,
-    destroy: function () {
-      try {
-        ReactDOM.unmountComponentAtNode(element);
-        body.removeChild(element);
-      } catch (_) {
-        console.warn(_);
+    return {
+      element: element,
+      component: component,
+      destroy: function () {
+        try {
+          ReactDOM.unmountComponentAtNode(element);
+          body.removeChild(element);
+        } catch (_) {
+          console.warn(_);
+        }
       }
-    }
-  };
+    };
+  }
 };

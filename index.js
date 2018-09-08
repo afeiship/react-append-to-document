@@ -12,7 +12,7 @@ var createElement = function (inAttrs, inName) {
 
 module.exports = {
   create: createElement,
-  append: function(inComponent, inProps, inTarget) {
+  append: function (inComponent, inProps, inTarget) {
     var props = inProps || {};
     var isElement = inTarget.nodeType == 1;
     var body = document.body;
@@ -20,21 +20,23 @@ module.exports = {
 
     body.appendChild(element);
 
-    var component = ReactDOM.render(
-      React.createElement(inComponent, props)
-      , element);
+    // issue: https://github.com/facebook/react/issues/10266
 
-    return {
-      element: element,
-      component: component,
-      destroy: function () {
-        try {
-          ReactDOM.unmountComponentAtNode(element);
-          body.removeChild(element);
-        } catch (_) {
-          console.warn(_);
-        }
-      }
-    };
+    return new Promise(function (resolve, reject) {
+      ReactDOM.render(React.createElement(inComponent, props), element, function () {
+        resolve({
+          element: element,
+          component: this,
+          destroy: function () {
+            try {
+              ReactDOM.unmountComponentAtNode(element);
+              body.removeChild(element);
+            } catch (_) {
+              console.warn(_);
+            }
+          }
+        });
+      });
+    });
   }
 };

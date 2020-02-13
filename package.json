@@ -12,5 +12,8 @@
   },
   "devDependencies": {
     "@feizheng/rake-git": "^1.2.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

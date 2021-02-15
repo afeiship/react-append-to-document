@@ -19,5 +19,9 @@
   },
   "devDependencies": {
     "release-it": "^14.4.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "append"
+  ]
 }

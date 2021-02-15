@@ -1,6 +1,6 @@
 {
-  "name": "@feizheng/react-append-to-document",
-  "version": "1.2.0",
+  "name": "@jswork/react-append-to-document",
+  "version": "1.0.0",
   "description": "React append a DOM to document.",
   "main": "index.js",
   "repository": "git@github.com:afeiship/react-append-to-document.git",
@@ -10,10 +10,14 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5"
   },
-  "devDependencies": {
-    "@feizheng/rake-git": "^1.2.1"
-  },
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "release-it": "^14.4.0"
   }
 }

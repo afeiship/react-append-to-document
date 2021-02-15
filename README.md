@@ -3,5 +3,5 @@
 
 ## installation
 ```shell
-npm i @feizheng/react-append-to-document
+npm i @jswork/react-append-to-document
 ```
